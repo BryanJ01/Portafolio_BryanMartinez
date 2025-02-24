@@ -1,0 +1,21 @@
+---
+import Logo from "./Logo.astro";
+---
+
+<header class="px-4 lg:px-6 h-14 flex items-center border-b bg-white">
+    <a class="flex items-center justify-center" href="/">
+      <Logo/>
+      <span class="sr-only">Portfolio</span>
+    </a>
+    <nav class="ml-auto flex gap-1 sm:gap-1 content-normal ">
+      <a class="py-2.5 px-4 text-sm rounded-lg bg-transparent text-black cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 hover:bg-indigo-500/65 hover:text-white" href="/">
+        Inicio
+      </a>
+      <a class="py-2.5 px-4 text-sm rounded-lg bg-transparent text-black cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 hover:bg-indigo-500/65 hover:text-white" href="/Blog">
+        Blog
+      </a>
+      <a class="py-2.5 px-4 text-sm rounded-lg bg-transparent text-black cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 hover:bg-indigo-500/65 hover:text-white" href="/">
+        Resumen CV
+      </a>
+    </nav>
+  </header>

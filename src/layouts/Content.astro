@@ -1,0 +1,76 @@
+---
+interface Technology {
+  name: string;
+  color: string;
+  logo: string;
+}
+
+interface ProjectProps {
+  title: string;
+  description: string;
+  imageUrl: string;
+  technologies: Technology[];
+  githubUrl?: string;
+  liveUrl?: string;
+}
+
+const projects: ProjectProps[] = [
+  {
+    title: "IncluClass",
+    description: "Una aplicación para gestionar tareas con recordatorios y prioridad.",
+    imageUrl: "/public/IncluClass01.jpeg",
+    technologies: [
+      { name: "React", color: "bg-blue-500 text-white", logo: "https://img.icons8.com/?size=100&id=wPohyHO_qO1a&format=png&color=000000" },
+      { name: "Node.js", color: "bg-green-500 text-white", logo: "https://img.icons8.com/?size=100&id=t9oCxEN7McHZ&format=png&color=000000" },
+      { name: "TypeScript", color: "bg-blue-500 text-white", logo: "https://img.icons8.com/?size=100&id=wPohyHO_qO1a&format=png&color=000000" },
+    ],
+    githubUrl: "https://github.com/user/task-manager",
+    liveUrl: "https://taskmanager.com",
+  },
+  {
+    title: "E-Commerce Platform",
+    description: "Plataforma de comercio electrónico con pagos en línea.",
+    imageUrl: "/ecommerce.png",
+    technologies: [
+      { name: "Next.js", color: "bg-gray-700 text-white", logo: "/logos/nextjs.svg" },
+      { name: "Stripe", color: "bg-purple-500 text-white", logo: "/logos/stripe.svg" },
+    ],
+    githubUrl: "https://github.com/user/ecommerce",
+    liveUrl: "https://ecommerce.com",
+  },
+  {
+    title: "Chat App",
+    description: "Aplicación de mensajería en tiempo real con WebSockets.",
+    imageUrl: "/chat-app.png",
+    technologies: [
+      { name: "Vue.js", color: "bg-green-400 text-white", logo: "https://img.icons8.com/?size=100&id=rY6agKizO9eb&format=png&color=000000" },
+      { name: "Firebase", color: "bg-yellow-500 text-black", logo: "/logos/firebase.svg" },
+    ],
+    githubUrl: "https://github.com/user/chat-app",
+    liveUrl: "https://chatapp.com",
+  },
+];
+---
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
+  {projects.map((project, index) => (
+    <a href={`/projects/${project.title.toLowerCase().replace(/\s+/g, "-")}`} key={index} class="bg-white rounded-xl overflow-hidden shadow-lg transform transition duration-300 hover:scale-120 cursor-pointer">
+      <div class="relative h-48 overflow-hidden">
+        <img src={project.imageUrl} alt={project.title} class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+      </div>
+      <div class="p-4">
+        <h3 class="text-xl font-bold text-gray-900">{project.title}</h3>
+        <p class="text-gray-600 text-sm line-clamp-2">{project.description}</p>
+        <div class="flex flex-wrap gap-2 mt-2">
+          {project.technologies.map((tech, techIndex) => (
+            <span key={techIndex} class={`flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium ${tech.color}`}>
+              <img src={tech.logo} alt={tech.name} class="h-5 w-5" />
+              {tech.name}
+            </span>
+          ))}
+        </div>
+      </div>
+    </a>
+  ))}
+</div>
