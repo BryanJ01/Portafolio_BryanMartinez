@@ -110,7 +110,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
           ref={carouselRef}
           onScroll={checkScrollability}
         >
-          <div className={cn("absolute right-0 z-[1000] h-auto w-[5%] overflow-hidden bg-gradient-to-l")}></div>
+          <div className="absolute right-0 top-0 bottom-0 z-[1000] w-[5%] bg-gradient-to-l from-white to-transparent pointer-events-none" />
 
           <div className={cn("flex flex-row justify-start gap-4 pl-4", "max-w-7xl mx-auto")}>
             {items.map((item, index) => (
@@ -176,7 +176,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
               className="h-6 w-6 text-gray-500"
             >
               <path d="M5 12h14" />
-              <path d="m19 5-7 7 7 7" />
+              <path d="m12 5 7 7-7 7" />
             </svg>
           </button>
         </div>

@@ -1,21 +1,87 @@
 ---
 import Logo from "./Logo.astro";
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = Astro.url.pathname } = Astro.props;
+
+const navItems = [
+  { label: "Inicio", href: "/" },
+  { label: "Blog", href: "/Blog" },
+  { label: "Resumen CV", href: "/cv" }
+];
 ---
 
-<header class="px-4 lg:px-6 h-14 flex items-center border-b bg-white">
-    <a class="flex items-center justify-center" href="/">
-      <Logo/>
+<header class="sticky top-0 z-40 w-full px-6 lg:px-8 h-20 flex items-center border-b bg-white/80 backdrop-blur-sm">
+  <div class="flex w-full items-center justify-between">
+    <a 
+      class="flex items-center justify-center gap-3 transform transition-transform duration-300 hover:scale-105" 
+      href="/" 
+      aria-label="Ir a la página de inicio"
+    >
+      <Logo />
       <span class="sr-only">Portfolio</span>
     </a>
-    <nav class="ml-auto flex gap-1 sm:gap-1 content-normal ">
-      <a class="py-2.5 px-4 text-sm rounded-lg bg-transparent text-black cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 hover:bg-indigo-500/65 hover:text-white" href="/">
-        Inicio
-      </a>
-      <a class="py-2.5 px-4 text-sm rounded-lg bg-transparent text-black cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 hover:bg-indigo-500/65 hover:text-white" href="/Blog">
-        Blog
-      </a>
-      <a class="py-2.5 px-4 text-sm rounded-lg bg-transparent text-black cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 hover:bg-indigo-500/65 hover:text-white" href="/">
-        Resumen CV
-      </a>
+    
+    <nav class="flex gap-2 sm:gap-4" aria-label="Navegación principal">
+      {navItems.map(item => (
+        <a 
+          class:list={[
+            "relative py-3 px-5 text-base rounded-lg font-semibold text-center transition-all duration-300",
+            "hover:bg-indigo-500/65 hover:text-white hover:scale-105 hover:shadow-md",
+            "focus:outline-none focus:ring-2 focus:ring-indigo-500/50",
+            "overflow-hidden",
+            currentPath === item.href 
+              ? "bg-indigo-500/10 text-indigo-700" 
+              : "bg-transparent text-black"
+          ]}
+          href={item.href}
+          aria-current={currentPath === item.href ? "page" : undefined}
+        >
+          <span class="relative z-10">{item.label}</span>
+          <span class="absolute inset-0 bg-indigo-500 rounded-lg transform scale-0 transition-transform duration-300 origin-bottom ease-out hover:scale-100 -z-0 opacity-0 hover:opacity-60"></span>
+        </a>
+      ))}
     </nav>
-  </header>
+  </div>
+</header>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  header {
+    animation: fadeIn 0.5s ease-out;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  nav a {
+    position: relative;
+    animation: fadeIn 0.5s ease-out;
+    animation-fill-mode: both;
+  }
+  
+  nav a:nth-child(1) { animation-delay: 0.1s; }
+  nav a:nth-child(2) { animation-delay: 0.2s; }
+  nav a:nth-child(3) { animation-delay: 0.3s; }
+  
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: rgb(99, 102, 241);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+  
+  nav a:hover::after {
+    width: 70%;
+  }
+</style>
