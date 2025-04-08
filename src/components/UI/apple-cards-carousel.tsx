@@ -38,11 +38,13 @@ interface CarouselProps {
 }
 
 export type Card = {
-  src: string
-  title: string
-  category: string
-  content: React.ReactNode
-}
+  src: string;
+  title: string;
+  category: string;
+  content: React.ReactNode;
+  projectTitle?: string; // Optional, in case you don't always have it
+  projectDescription?: string; // Optional
+};
 
 export const CarouselContext = createContext<{
   onCardClose: (index: number) => void

@@ -1,8 +1,7 @@
 "use client"
 
 import React from "react"
-import { motion, useScroll, useTransform, useSpring, type MotionValue } from "motion/react"
-
+import { motion, useScroll, useTransform, useSpring, useMotionValue, type MotionValue } from "framer-motion"
 
 export const HeroParallax = ({
   products,
@@ -24,8 +23,18 @@ export const HeroParallax = ({
 
   const springConfig = { stiffness: 150, damping: 40, bounce: 200 }
 
-  const translateX = useSpring(useTransform(scrollYProgress, [0, 1], [0, 1200]), springConfig)
-  const translateXReverse = useSpring(useTransform(scrollYProgress, [0, 1], [0, -1200]), springConfig)
+  // Detectar tamaño de pantalla
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768
+
+  const initialTranslate = useMotionValue(0)
+
+  const translateX = isMobile
+    ? initialTranslate
+    : useSpring(useTransform(scrollYProgress, [0, 1], [0, 1200]), springConfig)
+  const translateXReverse = isMobile
+    ? initialTranslate
+    : useSpring(useTransform(scrollYProgress, [0, 1], [0, -1200]), springConfig)
+
   const rotateX = useSpring(useTransform(scrollYProgress, [0, 0.2], [15, 0]), springConfig)
   const opacity = useSpring(useTransform(scrollYProgress, [0, 0.2], [0.2, 1]), springConfig)
   const rotateZ = useSpring(useTransform(scrollYProgress, [0, 0.2], [20, 0]), springConfig)
@@ -34,7 +43,7 @@ export const HeroParallax = ({
   return (
     <div
       ref={ref}
-      className="h-[210vh] py-100 overflow-hidden antialiased relative flex flex-col self-auto [perspective:550px] [transform-style:preserve-3d] border-dashed border-3 border-red-500"
+      className="h-[210vh] py-20 overflow-hidden antialiased relative flex flex-col self-auto [perspective:550px] [transform-style:preserve-3d]"
     >
       <ProfileHeader />
 
@@ -47,17 +56,17 @@ export const HeroParallax = ({
         }}
         className="mt-5"
       >
-        <motion.div className="flex flex-row-reverse space-x-reverse space-x-10 mb-10"> {/* Cambio de mb-10 a mb-4 */}
+        <motion.div className="flex flex-row-reverse space-x-reverse space-x-10 mb-4">
           {firstRow.map((product) => (
             <ProductCard product={product} translate={translateX} key={product.title} />
           ))}
         </motion.div>
-        <motion.div className="flex flex-row mb-10 space-x-10"> {/* Cambio de mb-20 a mb-4 */}
+        <motion.div className="flex flex-row space-x-10 mb-4">
           {secondRow.map((product) => (
             <ProductCard product={product} translate={translateXReverse} key={product.title} />
           ))}
         </motion.div>
-        <motion.div className="flex flex-row-reverse space-x-reverse space-x-10 mb-4"> {/* Cambio de mb-10 a mb-4 */}
+        <motion.div className="flex flex-row-reverse space-x-reverse space-x-10 mb-4">
           {thirdRow.map((product) => (
             <ProductCard product={product} translate={translateX} key={product.title} />
           ))}
@@ -75,7 +84,7 @@ export const ProfileHeader = () => {
           <div className="space-y-4">
             <h1 className="text-6xl font-bold dark:text-black">Bryan Jesus Martinez Perez</h1>
             <p className="text-3xl font-medium text-muted-foreground dark:text-black">
-              Software Engineer | Full Stack Developer | Sciencie
+              Software Engineer | Full Stack Developer | Science
             </p>
             <p className="text-muted-foreground dark:text-black font-bold opacity-90">
               I’m Bryan Jesús Martínez Pérez, a Software Engineering student with over three years of experience in Full-Stack development, specializing in data analysis and database management. Throughout my academic and professional journey, I have worked with technologies such as TypeScript, JavaScript, Java, React, Next.js, Astro, and MariaDB, developing efficient and scalable solutions.
@@ -102,7 +111,6 @@ export const ProfileHeader = () => {
               }}
             />
           </div>
-
         </div>
       </div>
     </section>
@@ -141,7 +149,9 @@ export const ProductCard = ({
         />
       </a>
       <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none"></div>
-      <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">{product.title}</h2>
+      <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">
+        {product.title}
+      </h2>
     </motion.div>
   )
 }

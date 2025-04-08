@@ -6,40 +6,52 @@ import RotatingText from './RotatingText.astro';
 // Sample data for the carousel
 const data: CardType[] = [
   {
-    category: "Artificial Intelligence",
-    title: "You can do more with AI.",
-    src: "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?q=80&w=3556&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    content: null,
+    category: "Software Engineer",
+    title: "Perfil Profesional",
+    src: "/images/software-engineer.png",
+    content: "Ingeniero de Software con más de 3 años de experiencia en desarrollo Full-Stack, especializado en Análisis de Datos y gestión de bases de datos.  Conocimientos en Java, JavaScript, TypeScript, Next.js, ORM Prisma, Vue.js y Spring.  Destaco en trabajo en equipo, resolución de errores y liderazgo.  Apasionado por explorar nuevas perspectivas y buscar oportunidades para aplicar mis conocimientos, aprender continuamente y contribuir al éxito de los proyectos.",
+    projectTitle: "",
+    projectDescription: "",
   },
   {
-    category: "Productivity",
-    title: "Enhance your productivity.",
-    src: "https://images.unsplash.com/photo-1531554694128-c4c6665f59c2?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    content: null,
+    category: "Front-End Development",
+    title: "Desarrollo de Interfaz de Usuario",
+    src: "/images/front-end.png",
+    content: "Experiencia en la creación de interfaces de usuario atractivas y funcionales utilizando frameworks modernos.",
+    projectTitle: "Mejora de la Interfaz de Usuario",
+    projectDescription: "Mejoré la interfaz de usuario utilizando Next.js, ORM Prisma y Vue.js, lo que llevó a un aumento del 20% en las calificaciones de satisfacción del usuario.",
   },
   {
-    category: "Product",
-    title: "Launching the new Apple Vision Pro.",
-    src: "https://images.unsplash.com/photo-1713869791518-a770879e60dc?q=80&w=2333&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    content: null,
+    category: "Back-End Development",
+    title: "Desarrollo de API y Base de Datos",
+    src: "/images/back-end.png",
+    content: "Habilidad para diseñar e implementar APIs y bases de datos eficientes y escalables.",
+    projectTitle: "Desarrollo de la API y Base de Datos",
+    projectDescription: "Diseñé e implementé una base de datos para la plataforma web 'Talleres Deportivos', lo que resultó en una reducción del 25% en los tiempos de recuperación de datos.  Configuré y desarrollé la API, mejorando la velocidad de comunicación de datos en un 30%.",
   },
   {
-    category: "Product",
-    title: "Maps for your iPhone 15 Pro Max.",
-    src: "https://images.unsplash.com/photo-1599202860130-f600f4948364?q=80&w=2515&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    content: null,
+    category: "Big Data",
+    title: "Gestión de Bases de Datos",
+    src: "/images/database.png",
+    content: "Experiencia en la gestión y optimización de bases de datos para garantizar la integridad y el rendimiento de los datos.",
+    projectTitle: "Implementación de Base de Datos",
+    projectDescription: "Implementé una base de datos para la plataforma web 'Talleres Deportivos', mejorando la eficiencia en la recuperación de datos.",
   },
   {
-    category: "iOS",
-    title: "Photography just got better.",
-    src: "https://images.unsplash.com/photo-1602081957921-9137a5d6eaee?q=80&w=2793&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    content: null,
+    category: "Cloud",
+    title: "Desarrollo Cloud",
+    src: "/images/leadership.png",
+    content: "Capacidad para liderar equipos, comunicar ideas y gestionar proyectos de manera efectiva.",
+    projectTitle: "Presentación en 'DETONA' Evento Emprendedor",
+    projectDescription: "Dirigí la planificación empresarial de un proyecto, impulsando una mejora del 20% en el posicionamiento de mercado a través de conocimientos estratégicos.  Dirigí un equipo de 4 miembros, coordinando los esfuerzos para ofrecer un discurso y un plan de proyecto completos.",
   },
   {
-    category: "Hiring",
-    title: "Hiring for a Staff Software Engineer",
-    src: "https://images.unsplash.com/photo-1511984804822-e16ba72f5848?q=80&w=2048&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    content: null,
+    category: "Soft Skills",
+    title: "Habilidades Blandas",
+    src: "/images/soft-skills.png",
+    content: "Habilidades interpersonales y de resolución de problemas que complementan mis habilidades técnicas.",
+    projectTitle: "Trabajo en Equipo en Hackathon",
+    projectDescription: "Coordiné tareas e integré componentes, logrando una colaboración fluida entre un equipo de 5 desarrolladores.  Entregué soluciones de alta calidad en un plazo de 24 horas, destacando mis habilidades técnicas y de resolución de problemas bajo presión.  Gané el 1er lugar entre más de 20 equipos participantes, demostrando una sólida experiencia técnica y un trabajo en equipo eficaz.",
   },
 ];
 ---
@@ -48,13 +60,10 @@ const data: CardType[] = [
   <h2 class=" max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans inline-flex gap-1">
     <RotatingText />
   </h2>
-  
-  
-  <!-- Using the React component wrapper with client:load directive -->
+
   <CarouselWrapper data={data} client:load />
 </div>
 
 <style>
   /* Add any additional styles here */
 </style>
-
