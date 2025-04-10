@@ -115,8 +115,7 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({ products }) => {
   );
 };
 
-// ... (ProfileHeader y ProductCard se mantienen igual)
-
+// Componente de ProductCard
 interface ProductCardProps {
     product: Product;
     translate: MotionValue<number>;
@@ -132,7 +131,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, translate }) 
             y: -20,
           }}
           key={product.title}
-          className="group/product h-96 w-[30rem] relative shrink-0"
+          className="group/product h-[calc(24rem+3vh)] sm:h-[30rem] w-[30rem] relative shrink-0 mb-4"
         >
           <a href={product.link} className="block group-hover/product:shadow-2xl">
             <img
@@ -151,6 +150,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, translate }) 
       );
 };
 
+// Componente de ProfileHeader
 export const ProfileHeader = () => {
     return (
       <section className="max-w-8xl relative mx-auto py-5 md:py-40 px-4 w-full left-0 top-0">
