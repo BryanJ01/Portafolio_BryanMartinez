@@ -28,7 +28,6 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({ products }) => {
 
   const springConfig = { stiffness: 100, damping: 20, bounce: 200 };
 
-
   // Detectar tamaño de pantalla
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
@@ -46,7 +45,7 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({ products }) => {
   const opacity = useSpring(useTransform(scrollYProgress, [0, 0.2], [0.2, 1]), springConfig);
   const rotateZ = useSpring(useTransform(scrollYProgress, [0, 0.2], [20, 0]), springConfig);
   const translateY = useSpring(useTransform(scrollYProgress, [0, 0.2], [-400, 50]), springConfig);
-  
+
   const sliderSettings = {
     dots: true,
     infinite: true,
@@ -95,17 +94,17 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({ products }) => {
           </Slider>
         ) : (
           <>
-            <motion.div className="flex flex-row-reverse space-x-reverse space-x-10 mb-4">
+            <motion.div className="flex flex-wrap gap-4 justify-center mb-4">
               {firstRow.map((product) => (
                 <ProductCard product={product} translate={translateX} key={product.title} />
               ))}
             </motion.div>
-            <motion.div className="flex flex-row space-x-10 mb-4">
+            <motion.div className="flex flex-wrap gap-4 justify-center mb-4">
               {secondRow.map((product) => (
                 <ProductCard product={product} translate={translateXReverse} key={product.title} />
               ))}
             </motion.div>
-            <motion.div className="flex flex-row-reverse space-x-reverse space-x-10 mb-4">
+            <motion.div className="flex flex-wrap gap-4 justify-center mb-4">
               {thirdRow.map((product) => (
                 <ProductCard product={product} translate={translateX} key={product.title} />
               ))}
@@ -134,7 +133,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, translate }) 
         scale: 1.05, // Al hacer hover, se aumenta el tamaño de la tarjeta
         transition: {
           duration: 0.1, // Hacer la animación más rápida
-
         }
       }}
       key={product.title}
@@ -156,9 +154,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, translate }) 
     </motion.div>
   );
 };
-
-
-
 
 // Componente de ProfileHeader
 export const ProfileHeader = () => {
