@@ -1,63 +1,92 @@
 ---
-import { CarouselWrapper } from '../components/UI/CarouselWrapper';
-import type { Card as CardType } from '../components/UI/apple-cards-carousel';
-import RotatingText from './RotatingText.astro';
+import { CarouselWrapper } from "../components/UI/CarouselWrapper";
+import type { Card as CardType } from "../components/UI/apple-cards-carousel";
+import RotatingText from "./RotatingText.astro";
 
-// Sample data for the carousel
 const data: CardType[] = [
   {
+    // Categoría del perfil, adecuada para roles de ingeniería de software.
     category: "Software Engineer",
-    title: "Perfil Profesional",
+    // Título del perfil, lo primero que se verá en la card.
+    title: "My Professional Profile",
+    // Ruta del recurso gráfico principal que acompaña la card.
     src: "/SoftwareEngineer.jpg",
-    content: "Ingeniero de Software con más de 3 años de experiencia en desarrollo Full-Stack, especializado en Análisis de Datos y gestión de bases de datos.  Conocimientos en Java, JavaScript, TypeScript, Next.js, ORM Prisma, Vue.js y Spring.  Destaco en trabajo en equipo, resolución de errores y liderazgo.  Apasionado por explorar nuevas perspectivas y buscar oportunidades para aplicar mis conocimientos, aprender continuamente y contribuir al éxito de los proyectos.",
+    // Contenido en inglés que resalta aspectos clave:
+    // 1. Excelencia académica y destacado GPA.
+    // 2. Experiencia freelance y prácticas profesionales en UNAM Uat.
+    // 3. Competencias en Full-Stack development, análisis de datos y bases de datos.
+    // Se incluye además la imagen de UAQ con bordes redondeados y centrada.
+    content: `As a Software Engineering student at Universidad Autónoma de Querétaro with a stellar GPA of 9.5, I have distinguished myself not only through my academic achievements but also by working as a freelancer on diverse projects. This blend of rigorous academic training and practical, on-the-ground experience has honed my problem-solving, project management, and leadership skills.<br><br/>
+  <!-- Se agrega la imagen de UAQ utilizando una etiqueta HTML con estilos en línea para bordes redondeados y centrado -->
+  <img src="UAQ.jpg" alt="Universidad Autónoma de Querétaro" style="border-radius:8px; display:block; margin:0 auto;" /> <br><br/>
+  I specialize in Full-Stack development, data analysis, and database management. I am proficient in languages such as Java, JavaScript, and TypeScript, and have hands-on experience with frameworks like Next.js, ORM Prisma, Vue.js, and Spring. Moreover, my internship at UNAM Uat (Unidad de Ata Tecnología) provided me with essential insights into the latest technological advances, further reinforcing my commitment to continuous learning and innovation.<br><br/>
+  `,
+    // Espacios reservados para detalles de proyectos, si fueran necesarios.
     projectTitle: "",
     projectDescription: "",
   },
   {
     category: "Front-End Development",
-    title: "Desarrollo de Interfaz de Usuario",
+    title: "User Interface Development",
     src: "/Interface.jpg",
-    content: "Experiencia en la creación de interfaces de usuario atractivas y funcionales utilizando frameworks modernos.",
-    projectTitle: "Mejora de la Interfaz de Usuario",
-    projectDescription: "Mejoré la interfaz de usuario utilizando Next.js, ORM Prisma y Vue.js, lo que llevó a un aumento del 20% en las calificaciones de satisfacción del usuario.",
+    content: `Throughout my career, I have developed strong expertise in crafting visually engaging and intuitive user interfaces. By leveraging modern frameworks such as Next.js, ORM Prisma, and Vue.js, I ensure that the interfaces I design are not only aesthetically pleasing but also highly functional and scalable.<br><br/>
+    <img src="PosePlanner_Capture.png" alt="Universidad Autónoma de Querétaro" style="border-radius:8px; display:block; margin:0 auto;" /> <br><br/>
+    My commitment to user-centered design principles has resulted in a significant 20% increase in user satisfaction ratings. I achieved this improvement by carefully analyzing user needs, implementing efficient design solutions, and continuously optimizing the performance of web applications, ultimately enhancing user interaction and engagement.`,
+    projectTitle: "",
+    projectDescription: "",
   },
   {
     category: "Back-End Development",
-    title: "Desarrollo de API y Base de Datos",
-    src: "BackApp.jpg",
-    content: "Habilidad para diseñar e implementar APIs y bases de datos eficientes y escalables.",
-    projectTitle: "Desarrollo de la API y Base de Datos",
-    projectDescription: "Diseñé e implementé una base de datos para la plataforma web 'Talleres Deportivos', lo que resultó en una reducción del 25% en los tiempos de recuperación de datos.  Configuré y desarrollé la API, mejorando la velocidad de comunicación de datos en un 30%.",
+    title: "Server-Side Development",
+    src: "/BackApp.jpg",
+    content: `I specialize in designing scalable and efficient server-side solutions that ensure seamless communication between users and applications. By utilizing modern technologies such as Next.js, ORM Prisma, and MariaDB, I have developed APIs that are not only fast but also highly secure and reliable.<br><br/>
+    <img src="TalleresDeportivos.png" alt="Universidad Autónoma de Querétaro" style="border-radius:8px; display:block; margin:0 auto;" /> <br><br/>
+    My work in optimizing database architectures and improving API performance led to a 25% reduction in data retrieval times. Through strategic enhancements in API communication and database schema design, I significantly improved the overall efficiency and stability of previous projects.`,
+    projectTitle: "",
+    projectDescription: "",
   },
   {
-    category: "Big Data",
-    title: "Gestión de Bases de Datos",
-    src: "Data.jpg",
-    content: "Experiencia en la gestión y optimización de bases de datos para garantizar la integridad y el rendimiento de los datos.",
-    projectTitle: "Implementación de Base de Datos",
-    projectDescription: "Implementé una base de datos para la plataforma web 'Talleres Deportivos', mejorando la eficiencia en la recuperación de datos.",
+    category: "Big Data Management",
+    title: "Database Management Expert",
+    src: "/Data.jpg",
+    content: `As a Database Management Expert, I have extensive experience in designing, implementing, and optimizing databases to ensure maximum data integrity, performance, and scalability. Leveraging tools such as MariaDB, ORM Prisma, and SQL best practices, I have built robust data architectures that handle large volumes of information with speed and reliability.<br><br/>
+    <img src="Main.png" alt="Universidad Autónoma de Querétaro" style="border-radius:8px; display:block; margin:0 auto;" /> <br><br/>
+    My work on the 'Talleres Deportivos' web platform resulted in a 25% improvement in information retrieval efficiency. By optimizing the database structure and refining query execution, I ensured faster and more reliable access to critical user data, supporting the platform’s long-term scalability and success.`,
+    projectTitle: "",
+    projectDescription: "",
   },
   {
-    category: "Cloud",
-    title: "Desarrollo Cloud",
-    src: "Cloud.jpg",
-    content: "Capacidad para liderar equipos, comunicar ideas y gestionar proyectos de manera efectiva.",
-    projectTitle: "Presentación en 'DETONA' Evento Emprendedor",
-    projectDescription: "Dirigí la planificación empresarial de un proyecto, impulsando una mejora del 20% en el posicionamiento de mercado a través de conocimientos estratégicos.  Dirigí un equipo de 4 miembros, coordinando los esfuerzos para ofrecer un discurso y un plan de proyecto completos.",
+    // Categoría: Liderazgo en proyectos de desarrollo en la nube.
+    category: "Cloud Development",
+    // Título visible en la card.
+    title: "Leadership in Cloud Projects",
+    // Imagen asociada al tema de desarrollo en la nube.
+    src: "/Cloud.jpg",
+    // Contenido completamente integrado con los logros y liderazgo.
+    content: `I possess strong leadership skills in cloud-based development projects, focusing on team management, strategic planning, and effective communication. My ability to bridge technical and business perspectives enables me to successfully guide multidisciplinary teams and deliver impactful cloud solutions.<br><br/>
+    <img src="Detona.png" alt="Universidad Autónoma de Querétaro" style="border-radius:8px; display:block; margin:0 auto;" /> <br><br/>
+    My participation as an exhibitor at the "DETONA" Entrepreneurial Event showcased my capabilities to drive projects forward. I led a multidisciplinary team of four members to develop and present a comprehensive cloud-based project plan, achieving a 20% improvement in market positioning through strategic innovation and effective team coordination. I am passionate about leveraging cloud technologies to innovate, scale solutions, and drive business success in dynamic environments.`,
+    // Se mantienen los campos projectTitle y projectDescription, pero vacíos.
+    projectTitle: "",
+    projectDescription: "",
   },
   {
     category: "Soft Skills",
-    title: "Habilidades Blandas",
+    title: "Valuable Interpersonal Skills",
     src: "/SoftSkills.jpg",
-    content: "Habilidades interpersonales y de resolución de problemas que complementan mis habilidades técnicas.",
-    projectTitle: "Trabajo en Equipo en Hackathon",
-    projectDescription: "Coordiné tareas e integré componentes, logrando una colaboración fluida entre un equipo de 5 desarrolladores.  Entregué soluciones de alta calidad en un plazo de 24 horas, destacando mis habilidades técnicas y de resolución de problemas bajo presión.  Gané el 1er lugar entre más de 20 equipos participantes, demostrando una sólida experiencia técnica y un trabajo en equipo eficaz.",
+    content: `Alongside my technical expertise, I possess strong interpersonal and problem-solving skills that are essential for dynamic work environments. My ability to collaborate effectively within teams and solve problems under pressure was demonstrated during hackathons, where I led a team of five developers and secured 1st place among more than 20 competing teams.<br><br/>
+    <img src="Winner.png" alt="Universidad Autónoma de Querétaro" style="border-radius:8px; display:block; margin:0 auto;" /> <br><br/>
+    These experiences highlight my strengths in leadership, cross-functional collaboration, creative adaptability, and resilience, all of which are critical for delivering successful results in high-pressure scenarios.`,
+    projectTitle: "",
+    projectDescription: "",
   },
 ];
 ---
 
 <div class="w-full h-full py-20">
-  <h2 class=" max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans inline-flex gap-1">
+  <h2
+    class="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans inline-flex gap-1"
+  >
     <RotatingText />
   </h2>
 
@@ -65,5 +94,32 @@ const data: CardType[] = [
 </div>
 
 <style>
-  /* Add any additional styles here */
+  /* Estilos adicionales */
+  .carousel-wrapper {
+    @apply relative w-full;
+  }
+
+  .carousel-container {
+    @apply flex w-full overflow-x-scroll overscroll-x-auto py-10 md:py-20 scroll-smooth [scrollbar-width:none];
+  }
+
+  .carousel-card {
+    @apply last:pr-[5%] md:last:pr-[33%] rounded-3xl;
+  }
+
+  .carousel-button {
+    @apply relative z-40 h-10 w-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center disabled:opacity-50 transition-colors duration-300 hover:bg-gray-200 dark:hover:bg-gray-700;
+  }
+
+  .carousel-content {
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+
+  .carousel-card img {
+    border-radius: 12px;
+    width: 100%;
+    height: auto;
+    display: block;
+  }
 </style>
