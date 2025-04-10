@@ -28,6 +28,7 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({ products }) => {
 
   const springConfig = { stiffness: 100, damping: 20, bounce: 200 };
 
+
   // Detectar tamaño de pantalla
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
@@ -45,7 +46,7 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({ products }) => {
   const opacity = useSpring(useTransform(scrollYProgress, [0, 0.2], [0.2, 1]), springConfig);
   const rotateZ = useSpring(useTransform(scrollYProgress, [0, 0.2], [20, 0]), springConfig);
   const translateY = useSpring(useTransform(scrollYProgress, [0, 0.2], [-400, 50]), springConfig);
-
+  
   const sliderSettings = {
     dots: true,
     infinite: true,
@@ -89,24 +90,24 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({ products }) => {
         {isMobile ? (
           <Slider {...sliderSettings}>
             {[...firstRow, ...secondRow, ...thirdRow].map((product) => (
-              <ProductCard product={product} translate={initialTranslate} key={product.title} isMobile={true} />
+              <ProductCard product={product} translate={initialTranslate} key={product.title} />
             ))}
           </Slider>
         ) : (
           <>
-            <motion.div className="flex flex-wrap gap-6 justify-center mb-4">
+            <motion.div className="flex flex-row-reverse space-x-reverse space-x-10 mb-4">
               {firstRow.map((product) => (
-                <ProductCard product={product} translate={translateX} key={product.title} isMobile={false} />
+                <ProductCard product={product} translate={translateX} key={product.title} />
               ))}
             </motion.div>
-            <motion.div className="flex flex-wrap gap-6 justify-center mb-4">
+            <motion.div className="flex flex-row space-x-10 mb-4">
               {secondRow.map((product) => (
-                <ProductCard product={product} translate={translateXReverse} key={product.title} isMobile={false} />
+                <ProductCard product={product} translate={translateXReverse} key={product.title} />
               ))}
             </motion.div>
-            <motion.div className="flex flex-wrap gap-6 justify-center mb-4">
+            <motion.div className="flex flex-row-reverse space-x-reverse space-x-10 mb-4">
               {thirdRow.map((product) => (
-                <ProductCard product={product} translate={translateX} key={product.title} isMobile={false} />
+                <ProductCard product={product} translate={translateX} key={product.title} />
               ))}
             </motion.div>
           </>
@@ -120,24 +121,24 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({ products }) => {
 interface ProductCardProps {
   product: Product;
   translate: MotionValue<number>;
-  isMobile: boolean; // Nueva propiedad para diferenciar entre móvil y escritorio
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product, translate, isMobile }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({ product, translate }) => {
   return (
     <motion.div
       style={{
         x: translate,
       }}
       whileHover={{
-        y: isMobile ? -20 : 0,  // En móvil, mueve más las tarjetas al hacer hover
-        scale: isMobile ? 1.05 : 1,  // En móvil, aumenta la escala de la tarjeta al hacer hover
+        y: -20,
+        scale: 1.05, // Al hacer hover, se aumenta el tamaño de la tarjeta
         transition: {
-          duration: 0.1, // Hacer la animación más rápida en móviles
+          duration: 0.1, // Hacer la animación más rápida
+
         }
       }}
       key={product.title}
-      className="group/product h-[calc(14rem+3vh)] sm:h-[40rem] md:h-[30rem] w-[calc(100% - 2rem)] sm:w-[32rem] md:w-[30rem] relative shrink-0 mb-4 flex justify-center items-center overflow-hidden transition-all"
+      className="group/product h-[calc(18rem+3vh)] sm:h-[40rem] md:h-[30rem] w-[calc(100% - 2rem)] sm:w-[32rem] relative shrink-0 mb-4 flex justify-center items-center overflow-hidden transition-all"
     >
       <a href={product.link} className="block group-hover/product:shadow-2xl">
         <img
@@ -155,6 +156,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, translate, is
     </motion.div>
   );
 };
+
+
+
 
 // Componente de ProfileHeader
 export const ProfileHeader = () => {
