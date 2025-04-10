@@ -94,17 +94,17 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({ products }) => {
           </Slider>
         ) : (
           <>
-            <motion.div className="flex flex-wrap gap-4 justify-center mb-4">
+            <motion.div className="flex flex-wrap gap-6 justify-center mb-4">
               {firstRow.map((product) => (
                 <ProductCard product={product} translate={translateX} key={product.title} />
               ))}
             </motion.div>
-            <motion.div className="flex flex-wrap gap-4 justify-center mb-4">
+            <motion.div className="flex flex-wrap gap-6 justify-center mb-4">
               {secondRow.map((product) => (
                 <ProductCard product={product} translate={translateXReverse} key={product.title} />
               ))}
             </motion.div>
-            <motion.div className="flex flex-wrap gap-4 justify-center mb-4">
+            <motion.div className="flex flex-wrap gap-6 justify-center mb-4">
               {thirdRow.map((product) => (
                 <ProductCard product={product} translate={translateX} key={product.title} />
               ))}
@@ -136,7 +136,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, translate }) 
         }
       }}
       key={product.title}
-      className="group/product h-[calc(18rem+3vh)] sm:h-[40rem] md:h-[30rem] w-[calc(100% - 2rem)] sm:w-[32rem] relative shrink-0 mb-4 flex justify-center items-center overflow-hidden transition-all"
+      className="group/product h-[calc(14rem+3vh)] sm:h-[40rem] md:h-[30rem] w-[calc(100% - 2rem)] sm:w-[32rem] md:w-[30rem] relative shrink-0 mb-4 flex justify-center items-center overflow-hidden transition-all"
     >
       <a href={product.link} className="block group-hover/product:shadow-2xl">
         <img
