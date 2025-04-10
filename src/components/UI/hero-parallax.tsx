@@ -169,7 +169,7 @@ export const ProfileHeader = () => {
           <div className="space-y-4">
             <h1 className="text-6xl font-bold tracking-tight mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600">Bryan Jesus Martinez Perez</h1>
             <p className="text-3xl font-medium text-muted-foreground dark:text-black">
-              Software Engineer | Full Stack Developer | Science
+              Software Engineer | Full Stack Developer | Data Science
             </p>
             <p className="text-muted-foreground dark:text-black font-bold opacity-90">
               I’m Bryan Jesús Martínez Pérez, a Software Engineering student with over three years of experience in Full-Stack development, specializing in data analysis and database management. Throughout my academic and professional journey, I have worked with technologies such as TypeScript, JavaScript, Java, React, Next.js, Astro, and MariaDB, developing efficient and scalable solutions.

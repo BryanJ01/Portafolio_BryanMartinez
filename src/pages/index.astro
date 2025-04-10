@@ -1,28 +1,24 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Landing from '../components/Landing.astro';
-import Footer from '../layouts/Footer.astro';
-import Contact from '../components/Contact.astro'
+import Contact from '../components/Contact.astro';
 import HeroParallaxDemo from '../components/hero-parallax-demo.astro';
 import AppleCardsCarouselDemo from '../components/AppleCardsCarouselDemo.astro';
 import Certificates from '../components/certificates.astro';
 ---
 
 <Layout title='Portafolio Bryan Jesus'>
-	<Landing/>
-  <main>
-	<div>
-		<HeroParallaxDemo/>
-	</div>
-	<div >
-		<AppleCardsCarouselDemo/>
-	</div>
-	<div>
-		<Certificates/>
-	</div>
-  </main>
-  <Contact/>
+    <Landing/>
+    <main>
+        <div>
+            <HeroParallaxDemo/>
+        </div>
+        <div>
+            <AppleCardsCarouselDemo/>
+        </div>
+        <div>
+            <Certificates/>
+        </div>
+    </main>
+    <Contact/>
 </Layout>
-
-<Footer/>
-
