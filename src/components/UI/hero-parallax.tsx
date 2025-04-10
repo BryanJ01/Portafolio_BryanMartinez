@@ -89,24 +89,24 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({ products }) => {
         {isMobile ? (
           <Slider {...sliderSettings}>
             {[...firstRow, ...secondRow, ...thirdRow].map((product) => (
-              <ProductCard product={product} translate={initialTranslate} key={product.title} />
+              <ProductCard product={product} translate={initialTranslate} key={product.title} isMobile={true} />
             ))}
           </Slider>
         ) : (
           <>
             <motion.div className="flex flex-wrap gap-6 justify-center mb-4">
               {firstRow.map((product) => (
-                <ProductCard product={product} translate={translateX} key={product.title} />
+                <ProductCard product={product} translate={translateX} key={product.title} isMobile={false} />
               ))}
             </motion.div>
             <motion.div className="flex flex-wrap gap-6 justify-center mb-4">
               {secondRow.map((product) => (
-                <ProductCard product={product} translate={translateXReverse} key={product.title} />
+                <ProductCard product={product} translate={translateXReverse} key={product.title} isMobile={false} />
               ))}
             </motion.div>
             <motion.div className="flex flex-wrap gap-6 justify-center mb-4">
               {thirdRow.map((product) => (
-                <ProductCard product={product} translate={translateX} key={product.title} />
+                <ProductCard product={product} translate={translateX} key={product.title} isMobile={false} />
               ))}
             </motion.div>
           </>
@@ -120,19 +120,20 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({ products }) => {
 interface ProductCardProps {
   product: Product;
   translate: MotionValue<number>;
+  isMobile: boolean; // Nueva propiedad para diferenciar entre móvil y escritorio
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product, translate }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({ product, translate, isMobile }) => {
   return (
     <motion.div
       style={{
         x: translate,
       }}
       whileHover={{
-        y: -20,
-        scale: 1.05, // Al hacer hover, se aumenta el tamaño de la tarjeta
+        y: isMobile ? -20 : 0,  // En móvil, mueve más las tarjetas al hacer hover
+        scale: isMobile ? 1.05 : 1,  // En móvil, aumenta la escala de la tarjeta al hacer hover
         transition: {
-          duration: 0.1, // Hacer la animación más rápida
+          duration: 0.1, // Hacer la animación más rápida en móviles
         }
       }}
       key={product.title}
