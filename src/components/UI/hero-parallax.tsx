@@ -131,7 +131,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, translate }) 
             y: -20,
           }}
           key={product.title}
-          className="group/product h-[calc(24rem+3vh)] sm:h-[40rem] w-[30rem] relative shrink-0 mb-4"
+          className="group/product h-[calc(24rem+3vh)] sm:h-[60rem] w-[30rem] relative shrink-0 mb-4"
         >
           <a href={product.link} className="block group-hover/product:shadow-2xl">
             <img
