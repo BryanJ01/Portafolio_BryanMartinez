@@ -26,7 +26,8 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({ products }) => {
     offset: ["start start", "end start"],
   });
 
-  const springConfig = { stiffness: 150, damping: 40, bounce: 200 };
+  const springConfig = { stiffness: 100, damping: 20, bounce: 200 };
+
 
   // Detectar tamaño de pantalla
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
@@ -35,16 +36,17 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({ products }) => {
 
   const translateX = isMobile
     ? initialTranslate
-    : useSpring(useTransform(scrollYProgress, [0, 1], [0, 1200]), springConfig);
+    : useSpring(useTransform(scrollYProgress, [0, 1], [0, 1200]), { ...springConfig, damping: 70 });
   const translateXReverse = isMobile
     ? initialTranslate
-    : useSpring(useTransform(scrollYProgress, [0, 1], [0, -1200]), springConfig);
+    : useSpring(useTransform(scrollYProgress, [0, 1], [0, -1200]), { ...springConfig, damping: 70 });
 
+  // El resto de la configuración de animaciones permanece igual
   const rotateX = useSpring(useTransform(scrollYProgress, [0, 0.2], [15, 0]), springConfig);
   const opacity = useSpring(useTransform(scrollYProgress, [0, 0.2], [0.2, 1]), springConfig);
   const rotateZ = useSpring(useTransform(scrollYProgress, [0, 0.2], [20, 0]), springConfig);
   const translateY = useSpring(useTransform(scrollYProgress, [0, 0.2], [-400, 50]), springConfig);
-
+  
   const sliderSettings = {
     dots: true,
     infinite: true,
@@ -53,12 +55,12 @@ export const HeroParallax: React.FC<HeroParallaxProps> = ({ products }) => {
     slidesToScroll: 1,
   };
 
-  const [containerHeight, setContainerHeight] = useState<string>("260vh");
+  const [containerHeight, setContainerHeight] = useState<string>("280vh");
 
   useEffect(() => {
     const updateHeight = () => {
       const windowHeight = window.innerHeight;
-      setContainerHeight(`${windowHeight * 2.1}px`); // Ajusta el factor según tus necesidades
+      setContainerHeight(`${windowHeight * 2.4}px`); // Ajusta el factor según tus necesidades
     };
 
     if (typeof window !== "undefined") {
@@ -129,26 +131,34 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, translate }) 
       }}
       whileHover={{
         y: -20,
+        scale: 1.05, // Al hacer hover, se aumenta el tamaño de la tarjeta
+        transition: {
+          duration: 0.1, // Hacer la animación más rápida
+
+        }
       }}
       key={product.title}
-      className="group/product h-[calc(18rem+3vh)] sm:h-[40rem] md:h-[30rem] w-[calc(100% - 2rem)] sm:w-[30rem] relative shrink-0 mb-4"
+      className="group/product h-[calc(18rem+3vh)] sm:h-[40rem] md:h-[30rem] w-[calc(100% - 2rem)] sm:w-[32rem] relative shrink-0 mb-4 flex justify-center items-center overflow-hidden transition-all"
     >
       <a href={product.link} className="block group-hover/product:shadow-2xl">
         <img
           src={product.thumbnail || "/placeholder.svg"}
           height="600"
           width="600"
-          className="object-cover object-left-top absolute h-full w-full inset-0"
+          className="object-cover object-center absolute h-full w-full inset-0 transition-all duration-300"
           alt={product.title}
         />
       </a>
-      <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none"></div>
-      <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">
+      <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none transition-opacity duration-300"></div>
+      <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white transition-opacity duration-300">
         {product.title}
       </h2>
     </motion.div>
   );
 };
+
+
+
 
 // Componente de ProfileHeader
 export const ProfileHeader = () => {
